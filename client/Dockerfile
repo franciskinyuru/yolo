@@ -1,8 +1,9 @@
-FROM node:18-alpine
-WORKDIR /usr/app
-COPY package*.json ./
-RUN npm install
+FROM node:18-alpine as build 
+WORKDIR /react-app
+COPY package*.json .
+RUN yarn install
 COPY . .
-EXPOSE 3000
-RUN npm run
-CMD ["react-scripts", "start"]
+RUN yarn run build
+FROM nginx:1.19
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+COPY --from=build /react-app/build /usr/share/nginx/htmls
