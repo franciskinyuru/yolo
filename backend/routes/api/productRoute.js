@@ -7,9 +7,16 @@ const Product = require('../../models/Products');
 // @route GET /products
 // @desc Get ALL products
 router.get('/', async(req,res)=>{
-    // Fetch all products from database
+    console.log("request started");
     const data = await Product.find({});
-    return data;
+    if (!data) {
+        console.log("Request ended");
+        res.status(200).json({"msg":"no data found"})
+    }
+    else{
+        console.log("Request ended");
+        res.status(200).json(data)
+    }
 })
 
 // @route POST /products
@@ -25,7 +32,13 @@ router.post('/', async (req,res)=>{
     });
 
     const data=await newProduct.save();
-    return data;
+    if(!data){
+        res.status(500).json({"msg":"error processing your request"})
+    }
+    else{
+        res.status(200).json(data) 
+    }
+    
 })
 // @route PUT api/products/:id
 // @desc  Update a product

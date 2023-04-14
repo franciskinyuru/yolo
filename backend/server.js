@@ -12,7 +12,6 @@ let mongodb_url = 'mongodb://localhost/';
 let dbName = 'yolomy';
 // define a url to connect to the database
 const MONGODB_URI = process.env.MONGO_URI
-
 try {
      mongoose.connect(MONGODB_URI,{useNewUrlParser: true, useUnifiedTopology: true});
     // let db = mongoose.connection;
@@ -45,6 +44,7 @@ app.use(cors());
 
 // Use Route
 app.use('/api/products', productRoute)
+
 
 // Define the PORT
 const PORT = process.env.PORT || 5050
