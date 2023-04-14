@@ -6,17 +6,15 @@ const Product = require('../../models/Products');
 
 // @route GET /products
 // @desc Get ALL products
-router.get('/', (req,res)=>{
+router.get('/', async(req,res)=>{
     // Fetch all products from database
-    Product.find({}, (error, products)=>{
-        if (error) console.log(error)
-        res.json(products)
-    })
+    const data = await Product.find({});
+    return data;
 })
 
 // @route POST /products
 // @desc  Create a product
-router.post('/', (req,res)=>{
+router.post('/', async (req,res)=>{
     
     // Create a product item
     const newProduct = new Product({
@@ -26,16 +24,14 @@ router.post('/', (req,res)=>{
         quantity: req.body.quantity,
     });
 
-    newProduct.save((err, product)=>{
-        if (err) console.log(err)
-        res.json(product)
-    })
+    const data=await newProduct.save();
+    return data;
 })
 // @route PUT api/products/:id
 // @desc  Update a product
-router.put('/:id', (req,res)=>{
+router.put('/:id', async(req,res)=>{
     // Update a product in the database
-    Product.updateOne({_id:req.params.id},{
+   await Product.updateOne({_id:req.params.id},{
         name: req.body.name,
         description: req.body.description,
         price: req.body.price,
@@ -48,9 +44,9 @@ router.put('/:id', (req,res)=>{
 })
 // @route DELETE api/products/:id
 // @desc  Delete a product
-router.delete('/:id', (req,res)=>{
+router.delete('/:id', async(req,res)=>{
     // Delete a product from database
-    Product.deleteOne({_id: req.params.id}, (err)=>{
+    await Product.deleteOne({_id: req.params.id}, (err)=>{
         if (err){
             console.log(err)
             res.json({success:false})

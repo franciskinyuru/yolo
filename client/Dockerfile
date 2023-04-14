@@ -1,9 +1,8 @@
-FROM node:18-alpine as build 
-WORKDIR /react-app
+FROM node:19-slim 
+WORKDIR /app
 COPY package*.json .
-RUN yarn install
+RUN npm install
 COPY . .
-RUN yarn run build
-FROM nginx:1.19
-COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /react-app/build /usr/share/nginx/htmls
+RUN npm run
+EXPOSE 3000
+CMD ["npm", "start"]
