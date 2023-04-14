@@ -39,7 +39,7 @@ I was able to run the services successfully on docker as shown in below images
 
 Running containers
 
-![Alt text](./images/Screenshot%202023-04-14%20at%2016.27.05.png?raw=true "Running Container")
+![Alt text](./images/Screenshot%202023-04-14%20at%2017.03.38.png?raw=true "Running Container")
 
 Frontend 
 ![Alt text](./images/Screenshot%202023-04-14%20at%2016.35.13.png?raw=true "Web app")
@@ -53,7 +53,7 @@ Backend API Call
 
 Named the images and containers to make them easy to indentify as below
 
-![Alt text](./images/Screenshot%202023-04-14%20at%2016.42.15.png?raw=true "Backend Api Access")
+![Alt text](./images/Screenshot%202023-04-14%20at%2017.03.38.png?raw=true "Backend Api Access")
 
 
 

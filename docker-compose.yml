@@ -32,7 +32,7 @@ services:
         ipv4_address: 172.128.0.2
   mongo:
     container_name: database
-    image: yolo-mongo:latest
+    image: mongo:latest
     ports:
       - 27017:27017
     networks:
