@@ -5,6 +5,7 @@ services:
    build:
     context: ./client
     dockerfile: Dockerfile
+   image: yolo-frontend:latest
    ports:
      - 3000:3000
    stdin_open: true
@@ -16,6 +17,7 @@ services:
    build:
     context: ./backend
     dockerfile: Dockerfile
+   image: yolo-backend:latest
    ports:
      - "5050:5050"
    environment:
@@ -30,7 +32,7 @@ services:
         ipv4_address: 172.128.0.2
   mongo:
     container_name: database
-    image: mongo
+    image: yolo-mongo:latest
     ports:
       - 27017:27017
     networks:
