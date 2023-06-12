@@ -2,9 +2,6 @@ version: '3'
 services:
   frontend:
    container_name: frontend
-   build:
-    context: ./client
-    dockerfile: Dockerfile
    image: {{ client_image }}
    ports:
      - 3000:3000
@@ -14,9 +11,6 @@ services:
         ipv4_address: 172.128.0.3
   backend:
    container_name: backend
-   build:
-    context: ./backend
-    dockerfile: Dockerfile
    image: {{ backend_image }}
    ports:
      - "5050:5050"
