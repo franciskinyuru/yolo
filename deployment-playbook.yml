@@ -1,0 +1,31 @@
+- name: Run yolo containers
+  hosts: all
+  vars:
+    client_image: warui1225/yolo-frontend
+    backend_image: warui1225/yolo-backend
+    app_folder: /opt/yolo
+  tasks:
+    - name: Pull the client image
+      community.docker.docker_image:
+        name: "{{ client_image }}"
+        source: pull
+
+    - name: Pull the backend image
+      community.docker.docker_image:
+        name: "{{ backend_image }}"
+        source: pull
+
+    - name: Create a folder
+      ansible.builtin.file:
+        path: "{{ app_folder }}"
+        state: directory
+
+    - name: Copy docker-compose file from repo to folder
+      ansible.builtin.template:
+        src: ./docker-compose.yaml
+        dest: "{{ app_folder }}/docker-compose.yaml"
+
+    - name: Start containers
+      shell: "docker-compose up -d"
+      args:
+        chdir: "{{ app_folder }}"
